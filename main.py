@@ -7,17 +7,22 @@ def main():
     try:
         # Initialize each component
 
+        #GPIO6, GPIO13, GPIO19, GPIO26
+        motor = MotorDriver(in1=6, in2=13, in3=19, in4=26)
+
+        motor.stop()
+        
         while True:
             
             # Distance sensor code
 
             # LED code
 
-        except KeyboardInterrupt:
-            # Control direction
+    except KeyboardInterrupt:
+        # Control direction
 
-        finally:
-            # Clean up
+    finally:
+        # Clean up
 
 if __name__ == "__main__":
     main()
