@@ -1,14 +1,14 @@
-from gpiozero import DistanceSensor
+from gpiozero import DistanceSensor as ds
 import time
 
-class Sensor:
+class DistanceSensor:
 
   TRIGGER = 20
   ECHO = 21
   sensor;
   
   def _init_(self):
-    self.sensor = DistanceSensor(echo=ECHO, trigger=TRIGGER)
+    self.sensor = ds(echo=ECHO, trigger=TRIGGER)
 
   def run():
     try:
