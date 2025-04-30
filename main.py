@@ -15,8 +15,8 @@ def main():
         while True:
             
             # Distance sensor code
-            distanceSensor = DistanceSensor()
-            distanceSensor.run()
+            distance_sensor = DistanceSensor()
+            distance_sensor.run()
 
             # LED code
 
