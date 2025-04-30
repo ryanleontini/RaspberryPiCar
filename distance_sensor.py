@@ -14,6 +14,11 @@ class DistanceSensor:
     try:
       while True:
         distance = sensor.distance
+
+        # if car gets too close to object
+        if distance < 2:
+          return 0
+        
         time.sleep(0.1)
     except Keyboard Interrupt:
       pass
