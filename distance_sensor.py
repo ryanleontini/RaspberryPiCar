@@ -1,17 +1,22 @@
 from gpiozero import DistanceSensor
 import time
 
-TRIGGER = 20
-ECHO = 21
+class Sensor:
 
-sensor = DistanceSensor(echo=ECHO, trigger=TRIGGER)
+  TRIGGER = 20
+  ECHO = 21
+  sensor;
+  
+  def _init_(self):
+    self.sensor = DistanceSensor(echo=ECHO, trigger=TRIGGER)
 
-try:
-  while True:
-    distance = sensor.distance
-    time.sleep(0.1)
-except Keyboard Interrupt:
-  pass
+  def run():
+    try:
+      while True:
+        distance = sensor.distance
+        time.sleep(0.1)
+    except Keyboard Interrupt:
+      pass
 
 
 
