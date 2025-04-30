@@ -16,7 +16,10 @@ def main():
             
             # Distance sensor code
             distance_sensor = DistanceSensor()
-            distance_sensor.run()
+            distance = distance_sensor.run()
+            # if car gets too close to object
+            if distance == 0:
+                motor.stop()
 
             # LED code
 
