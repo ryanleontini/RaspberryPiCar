@@ -1,14 +1,19 @@
-import RPi.GPIO as GPIO
+from gpiozero import DistanceSensor
 import time
-
-GPIO.setmode(GPIO.board)
 
 TRIGGER = 20
 ECHO = 21
 
-GPIO.setup(TRIGGER, GPIO.OUT)
-GPIO.setup(ECHO, GPIO.IN)
-GPIO.output(TRIGGER, False)
+sensor = DistanceSensor(echo=ECHO, trigger=TRIGGER)
+
+try:
+  while True:
+    distance = sensor.distance
+    time.sleep(0.1)
+except Keyboard Interrupt:
+  pass
+
+
 
 
 
