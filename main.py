@@ -1,33 +1,35 @@
 import time
 from motor_driver import MotorDriver
-from distance_sensor import DistanceSensor
-from led_indicator import LEDIndicator
 
 def main():
+    motor = MotorDriver(in1=6, in2=13, in3=19, in4=26)
+
+    print("Controls: w = forward | s = backward | x = stop | q = quit")
+
     try:
-        # Initialize each component
-
-        #GPIO6, GPIO13, GPIO19, GPIO26
-        motor = MotorDriver(in1=6, in2=13, in3=19, in4=26)
-
-        motor.stop()
-        
         while True:
-            
-            # Distance sensor code
-            distance_sensor = DistanceSensor()
-            distance = distance_sensor.run()
-            # if car gets too close to object
-            if distance == 0:
+            cmd = input("Enter command: ").lower()
+            if cmd == "w":
+                motor.forward()
+                print("Moving forward")
+            elif cmd == "s":
+                motor.backward()
+                print("Reversing")
+            elif cmd == "x":
                 motor.stop()
-
-            # LED code
+                print("Stopping")
+            elif cmd == "q":
+                print("Exiting...")
+                break
+            else:
+                print("Unknown command")
 
     except KeyboardInterrupt:
-        # Control direction
+        print("Interrupted by user")
 
     finally:
-        # Clean up
+        motor.cleanup()
+        print("GPIO cleaned up")
 
 if __name__ == "__main__":
     main()

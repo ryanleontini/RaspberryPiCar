@@ -1,13 +1,11 @@
-import RPiGPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 
 class MotorDriver:
     def __init__(self, in1, in2, in3, in4):
-
         # Motor A
         self.in1 = in1
         self.in2 = in2
-
         # Motor B
         self.in3 = in3
         self.in4 = in4
@@ -32,11 +30,11 @@ class MotorDriver:
         GPIO.output(self.in3, GPIO.LOW)
         GPIO.output(self.in4, GPIO.HIGH)
 
-    # def left(self):
-
-    # def right(self):
+    def stop(self):
+        GPIO.output(self.in1, GPIO.LOW)
+        GPIO.output(self.in2, GPIO.LOW)
+        GPIO.output(self.in3, GPIO.LOW)
+        GPIO.output(self.in4, GPIO.LOW)
 
     def cleanup(self):
         GPIO.cleanup()
-
-
