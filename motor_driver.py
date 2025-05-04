@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
+# Each function will run until it encounter a motor.stop() or another motor function
+
 class MotorDriver:
     def __init__(self, in1, in2, in3, in4):
         # Motor A
