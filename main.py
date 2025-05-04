@@ -20,7 +20,9 @@ def reverse_routine(motor):
     print("Starting reverse routine.")
 
 def main():
-    motor = MotorDriver(in1=6, in2=13, in3=19, in4=26)
+    motor = MotorDriver(in1=6, in2=13, in3=19, in4=26, ena=23, enb=24)
+    # Set speed between 0 - 100
+    motor.set_speed(40)
 
     sensor = DistanceSensor()
 
