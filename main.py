@@ -7,7 +7,7 @@ DISTANCE_THRESHOLD = 5
 
 def distance_monitor(sensor, motor, stop_event, routine_triggered):
     while not stop_event.is_set():
-        dist = sensor.read_distance()
+        dist = sensor.run()
         print(f"Distance: {dist} cm", end="\r")
         if dist < DISTANCE_THRESHOLD and not routine_triggered.is_set():
             print("\n Obstacle detected. Stopping car.")
@@ -23,7 +23,6 @@ def main():
     motor = MotorDriver(in1=6, in2=13, in3=19, in4=26)
 
     sensor = DistanceSensor()
-    sensor.run()
 
     stop_event = threading.Event()
     routine_triggered = threading.Event()

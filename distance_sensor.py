@@ -3,6 +3,9 @@ import time
 
 class DistanceSensor:
   def __init__(self, trigger=20, echo=21):
+    self.trigger = trigger
+    self.echo = echo
+
     GPIO.setup(trigger, GPIO.OUT)
     GPIO.setup(echo, GPIO.IN)
     GPIO.output(trigger, False)
@@ -17,12 +20,16 @@ class DistanceSensor:
         while GPIO.input(self.echo) == 0:
           start_time = time.time()
 
-        while GPIO.input(self.echo) == 0:
+        while GPIO.input(self.echo) == 1:
           end_time = time.time()
 
-        distance = (end_time - start_time) * 100
+        pulse_duration = end_time - start_time
 
-        print(f"Distance: {distance:.1f} cm", end="\r")
+        distance_cm = pulse_duration * 17150 # adjust for speed of sound = 343 m/s
+
+        print(f"Distance: {distance_cm} cm", end="\r")
+
+        return distance_cm
 
         # if car gets too close to object
 
