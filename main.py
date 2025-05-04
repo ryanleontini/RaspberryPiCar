@@ -1,9 +1,14 @@
 import time
 from motor_driver import MotorDriver
+from distance_sensor import DistanceSensor
 
 def main():
     motor = MotorDriver(in1=6, in2=13, in3=19, in4=26)
 
+    sensor = DistanceSensor()
+    sensor.run()
+    
+    '''
     print("Controls: w = forward | s = backward | x = stop | q = quit")
 
     try:
@@ -30,6 +35,8 @@ def main():
     finally:
         motor.cleanup()
         print("GPIO cleaned up")
+
+    '''
 
 if __name__ == "__main__":
     main()
