@@ -53,6 +53,14 @@ class MotorDriver:
         GPIO.output(self.in3, GPIO.LOW)
         GPIO.output(self.in4, GPIO.LOW)
 
+    def backward_left(self):
+        GPIO.output(self.in1, GPIO.LOW)
+        GPIO.output(self.in2, GPIO.HIGH)
+
+    def right(self):
+        GPIO.output(self.in1, GPIO.HIGH)
+        GPIO.output(self.in2, GPIO.LOW)
+
     def cleanup(self):
         self.pwm_a.stop()
         self.pwm_b.stop()

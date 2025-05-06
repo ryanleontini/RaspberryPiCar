@@ -22,6 +22,16 @@ def reverse_routine(motor):
     time.sleep(1.0)
     motor.stop()
 
+    # Turn around - 4 point turn
+    motor.backward_left()
+    time.sleep(0.1)
+    motor.right()
+    time.sleep(0.1)
+    motor.backward_left()
+    time.sleep(0.1)
+    motor.right()
+    motor.stop()
+
 def main():
     motor = MotorDriver(in1=6, in2=13, in3=19, in4=26, ena=23, enb=24)
     # Set speed between 0 - 100
