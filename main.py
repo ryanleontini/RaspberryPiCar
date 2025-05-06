@@ -18,6 +18,9 @@ def distance_monitor(sensor, motor, stop_event, routine_triggered):
 def reverse_routine(motor):
     # IAN - YOUR ROUTINE HERE - Check motor_driver.py for functions
     print("Starting reverse routine.")
+    motor.backward()
+    time.sleep(1.0)
+    motor.stop()
 
 def main():
     motor = MotorDriver(in1=6, in2=13, in3=19, in4=26, ena=23, enb=24)
