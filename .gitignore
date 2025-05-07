@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 
 venv/
+.venv/
 
 __pycache__/distance_sensor.cpython-311.pyc
 __pycache__/motor_driver.cpython-311.pyc

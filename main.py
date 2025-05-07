@@ -2,6 +2,7 @@ import time
 import threading
 from motor_driver import MotorDriver
 from distance_sensor import DistanceSensor
+from joycon import start_joycon_control
 
 DISTANCE_THRESHOLD = 5
 
@@ -36,6 +37,7 @@ def main():
     motor = MotorDriver(in1=6, in2=13, in3=19, in4=26, ena=23, enb=24)
     # Set speed between 0 - 100
     motor.set_speed(40)
+    start_joycon_control(motor)
 
     sensor = DistanceSensor()
 
@@ -54,22 +56,6 @@ def main():
                 reverse_routine(motor)
                 routine_triggered.clear()
                 continue
-            
-            cmd = input("Enter command: ").lower()
-            if cmd == "w":
-                motor.forward()
-                print("Moving forward")
-            elif cmd == "s":
-                motor.backward()
-                print("Reversing")
-            elif cmd == "x":
-                motor.stop()
-                print("Stopping")
-            elif cmd == "q":
-                print("Exiting...")
-                break
-            else:
-                print("Unknown command")
 
     except KeyboardInterrupt:
         print("Interrupted by user")
