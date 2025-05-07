@@ -21,19 +21,36 @@ def joycon_control_loop(motor, device_path=JOYCON_INPUT_PATH):
         print(f"[Joy-Con] ERROR: Could not find device at {device_path}")
         return
 
+    rx = 0
+    ry = 0
+
     for event in device.read_loop():
         if event.type == ecodes.EV_ABS:
-            if event.code == ecodes.ABS_RY:
+            if event.code == ecodes.ABS_RX:
+                rx = event.value
+            elif event.code == ecodes.ABS_RY:
                 ry = event.value
-                if abs(ry) < JOYSTICK_DEADZONE_RAW:
-                    motor.stop()
-                    print("Stop     ", end="\r")
-                elif ry < -JOYSTICK_DEADZONE_RAW:
+
+            # Determine action based on joystick direction
+            if abs(rx) < JOYSTICK_DEADZONE_RAW and abs(ry) < JOYSTICK_DEADZONE_RAW:
+                motor.stop()
+                print("Stop     ", end="\r")
+            elif abs(rx) > abs(ry):
+                # Stronger horizontal movement → turn
+                if rx < -JOYSTICK_DEADZONE_RAW:
+                    motor.left()
+                    print("Turn Left ", end="\r")
+                elif rx > JOYSTICK_DEADZONE_RAW:
+                    motor.right()
+                    print("Turn Right", end="\r")
+            else:
+                # Stronger vertical movement → forward/backward
+                if ry < -JOYSTICK_DEADZONE_RAW:
                     motor.forward()
-                    print("Forward  ", end="\r")
+                    print("Forward   ", end="\r")
                 elif ry > JOYSTICK_DEADZONE_RAW:
                     motor.backward()
-                    print("Backward ", end="\r")
+                    print("Backward  ", end="\r")
 
 def test_joystick_input(device_path=JOYCON_INPUT_PATH):
     """Standalone joystick tester: prints direction based on RX/RY"""

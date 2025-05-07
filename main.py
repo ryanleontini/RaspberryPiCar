@@ -24,13 +24,9 @@ def reverse_routine(motor):
     motor.stop()
 
     # Turn around - 4 point turn
-    motor.backward_left()
-    time.sleep(0.1)
+    motor.left()
     motor.right()
-    time.sleep(0.1)
-    motor.backward_left()
-    time.sleep(0.1)
-    motor.right()
+    time.sleep(1.5)
     motor.stop()
 
 def main():
@@ -48,8 +44,6 @@ def main():
     thread.daemon = True
     thread.start()
     
-    print("Controls: w = forward | s = backward | x = stop | q = quit")
-
     try:
         while True:
             if routine_triggered.is_set():
